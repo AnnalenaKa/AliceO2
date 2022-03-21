@@ -1,4 +1,4 @@
-# Changes since 2022-03-06
+# Changes since 2022-03-07
 
 ## Changes in Analysis
 
@@ -9,9 +9,9 @@
 - [#8368](https://github.com/AliceO2Group/AliceO2/pull/8368) 2022-03-18: Mch dcs fix start validity time by [@aphecetche](https://github.com/aphecetche)
 - [#8392](https://github.com/AliceO2Group/AliceO2/pull/8392) 2022-03-19: Fixes for GRPLHCIF parsing/filling by [@shahor02](https://github.com/shahor02)
 - [#8327](https://github.com/AliceO2Group/AliceO2/pull/8327) 2022-03-19: MCH: DCS DP change from RAW to DPVAL by [@aphecetche](https://github.com/aphecetche)
+- [#8337](https://github.com/AliceO2Group/AliceO2/pull/8337) 2022-03-21: switch the variable initialization order by [@zhaomr13](https://github.com/zhaomr13)
 ## Changes in DataFormats
 
-- [#8307](https://github.com/AliceO2Group/AliceO2/pull/8307) 2022-03-10: Revert "Merge pull request #8275 from matthias-kleiner/dedxdev" by [@davidrohr](https://github.com/davidrohr)
 - [#8369](https://github.com/AliceO2Group/AliceO2/pull/8369) 2022-03-17: Doxygen fixes and improvements for MID by [@dstocco](https://github.com/dstocco)
 - [#8375](https://github.com/AliceO2Group/AliceO2/pull/8375) 2022-03-17: Enable extra track types in dpl-workflow, related fixes in RecoContainer by [@shahor02](https://github.com/shahor02)
 - [#8372](https://github.com/AliceO2Group/AliceO2/pull/8372) 2022-03-17: Fix new xcode by [@ktf](https://github.com/ktf)
@@ -21,9 +21,9 @@
 - [#8393](https://github.com/AliceO2Group/AliceO2/pull/8393) 2022-03-18: GPU: Fix some compiler warnings by [@davidrohr](https://github.com/davidrohr)
 - [#8392](https://github.com/AliceO2Group/AliceO2/pull/8392) 2022-03-19: Fixes for GRPLHCIF parsing/filling by [@shahor02](https://github.com/shahor02)
 - [#8317](https://github.com/AliceO2Group/AliceO2/pull/8317) 2022-03-20: Adapt to type sent by DCS + macros to populate and read the GRP DCS config entry by [@chiarazampolli](https://github.com/chiarazampolli)
+- [#8337](https://github.com/AliceO2Group/AliceO2/pull/8337) 2022-03-21: switch the variable initialization order by [@zhaomr13](https://github.com/zhaomr13)
 ## Changes in Detectors
 
-- [#8307](https://github.com/AliceO2Group/AliceO2/pull/8307) 2022-03-10: Revert "Merge pull request #8275 from matthias-kleiner/dedxdev" by [@davidrohr](https://github.com/davidrohr)
 - [#8322](https://github.com/AliceO2Group/AliceO2/pull/8322) 2022-03-11: Avoid same alias for different specs by [@shahor02](https://github.com/shahor02)
 - [#8328](https://github.com/AliceO2Group/AliceO2/pull/8328) 2022-03-12: Fixes for CCDB fetcher by [@shahor02](https://github.com/shahor02)
 - [#8329](https://github.com/AliceO2Group/AliceO2/pull/8329) 2022-03-14: Fix for mc->raw with firstOrbit>0 in RORC detectors by [@shahor02](https://github.com/shahor02)
@@ -66,7 +66,6 @@
 - [#8330](https://github.com/AliceO2Group/AliceO2/pull/8330) 2022-03-16: o2-eve loads ITS/MFT cluster dictionaries via CCDB fetcher by [@shahor02](https://github.com/shahor02)
 ## Changes in Framework
 
-- [#8308](https://github.com/AliceO2Group/AliceO2/pull/8308) 2022-03-10: Add missing include by [@davidrohr](https://github.com/davidrohr)
 - [#8316](https://github.com/AliceO2Group/AliceO2/pull/8316) 2022-03-11: DPL: detect default condition-backend by [@ktf](https://github.com/ktf)
 - [#8318](https://github.com/AliceO2Group/AliceO2/pull/8318) 2022-03-11: DPL: insert timeout to avoid OOM killer when runningh with DDS by [@ktf](https://github.com/ktf)
 - [#8314](https://github.com/AliceO2Group/AliceO2/pull/8314) 2022-03-11: DPL: make missing CCDB objects fatal by [@ktf](https://github.com/ktf)
@@ -88,6 +87,7 @@
 - [#8382](https://github.com/AliceO2Group/AliceO2/pull/8382) 2022-03-18: DPL: introduce OptionsHelpers by [@ktf](https://github.com/ktf)
 - [#8390](https://github.com/AliceO2Group/AliceO2/pull/8390) 2022-03-18: DPL: setup the expiration mechanism after all the input devices are in place by [@ktf](https://github.com/ktf)
 - [#8398](https://github.com/AliceO2Group/AliceO2/pull/8398) 2022-03-19: [DPL Analysis] [Event mixing] Upgrade event mixing to use BinningPolicy by [@saganatt](https://github.com/saganatt)
+- [#8381](https://github.com/AliceO2Group/AliceO2/pull/8381) 2022-03-21: DPL: fix deprecated inheritance of std::iterator by [@ktf](https://github.com/ktf)
 ## Changes in Steer
 
 - [#8312](https://github.com/AliceO2Group/AliceO2/pull/8312) 2022-03-11: Protect against use of GRPUpdater when not needed by [@sawenzel](https://github.com/sawenzel)
