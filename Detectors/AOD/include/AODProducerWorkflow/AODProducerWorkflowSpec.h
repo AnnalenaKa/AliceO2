@@ -172,6 +172,8 @@ class AODProducerWorkflowDPL : public Task
   uint32_t mTrackSnp = 0xFFFFFF00;             // 15 bits
   uint32_t mTrackTgl = 0xFFFFFF00;             // 15 bits
   uint32_t mTrack1Pt = 0xFFFFFC00;             // 13 bits
+  uint32_t mTrackTPCTgl = 0xFFFFFFFF;
+  uint32_t mTrackTPCSgnPt = 0xFFFFFFFF;
   uint32_t mTrackCovDiag = 0xFFFFFF00;         // 15 bits
   uint32_t mTrackChi2 = 0xFFFF0000;            // 7 bits
   uint32_t mTrackCovOffDiag = 0xFFFF0000;      // 7 bits
@@ -204,9 +206,16 @@ class AODProducerWorkflowDPL : public Task
   // helper struct for extra info in fillTrackTablesPerCollision()
   struct TrackExtraInfo {
     float tpcInnerParam = 0.f;
+    float fTPCTgl = 0.f;
+    float fTPCSigned1Pt = 0.f;
     uint32_t flags = 0;
     uint8_t itsClusterMap = 0;
     uint8_t tpcNClsFindable = 0;
+    uint8_t fTPCNClsdEdx = 0;
+    uint8_t fTPCNClsdEdxIROC = 0;
+    uint8_t fTPCNClsdEdxOROC1 = 0;
+    uint8_t fTPCNClsdEdxOROC2 = 0;
+    uint8_t fTPCNClsdEdxOROC3 = 0;
     int8_t tpcNClsFindableMinusFound = 0;
     int8_t tpcNClsFindableMinusCrossedRows = 0;
     uint8_t tpcNClsShared = 0;
@@ -216,6 +225,10 @@ class AODProducerWorkflowDPL : public Task
     float trdChi2 = -999.f;
     float tofChi2 = -999.f;
     float tpcSignal = -999.f;
+    float tpcSignalIROC = -999.f;
+    float tpcSignalOROC1 = -999.f;
+    float tpcSignalOROC2 = -999.f;
+    float tpcSignalOROC3 = -999.f;
     float trdSignal = -999.f;
     float length = -999.f;
     float tofExpMom = -999.f;

@@ -232,9 +232,12 @@ void AODProducerWorkflowDPL::addToTracksExtraTable(TracksExtraCursorType& tracks
   // extra
   tracksExtraCursor(0,
                     truncateFloatFraction(extraInfoHolder.tpcInnerParam, mTrack1Pt),
+                    truncateFloatFraction(extraInfoHolder.tpcTgl, mTrackTPCTgl),
+                    truncateFloatFraction(extraInfoHolder.fTPCSigned1Pt, mTrackTPCSgnPt),
                     extraInfoHolder.flags,
                     extraInfoHolder.itsClusterMap,
                     extraInfoHolder.tpcNClsFindable,
+                    extraInfoHolder.TPCNClsdEdx,
                     extraInfoHolder.tpcNClsFindableMinusFound,
                     extraInfoHolder.tpcNClsFindableMinusCrossedRows,
                     extraInfoHolder.tpcNClsShared,
@@ -1084,6 +1087,8 @@ void AODProducerWorkflowDPL::init(InitContext& ic)
     mTrackSnp = 0xFFFFFFFF;
     mTrackTgl = 0xFFFFFFFF;
     mTrack1Pt = 0xFFFFFFFF;
+    mTrackTPCTgl = 0xFFFFFFFF;
+    mTrackTPCSgnPt = 0xFFFFFFFF;
     mTrackChi2 = 0xFFFFFFFF;
     mTrackCovDiag = 0xFFFFFFFF;
     mTrackCovOffDiag = 0xFFFFFFFF;
