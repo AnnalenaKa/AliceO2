@@ -206,16 +206,16 @@ class AODProducerWorkflowDPL : public Task
   // helper struct for extra info in fillTrackTablesPerCollision()
   struct TrackExtraInfo {
     float tpcInnerParam = 0.f;
-    float fTPCTgl = 0.f;
-    float fTPCSigned1Pt = 0.f;
+    float tpcTgl = 0.f;
+    float tpcSigned1Pt = 0.f;
     uint32_t flags = 0;
     uint8_t itsClusterMap = 0;
     uint8_t tpcNClsFindable = 0;
-    uint8_t fTPCNClsdEdx = 0;
-    uint8_t fTPCNClsdEdxIROC = 0;
-    uint8_t fTPCNClsdEdxOROC1 = 0;
-    uint8_t fTPCNClsdEdxOROC2 = 0;
-    uint8_t fTPCNClsdEdxOROC3 = 0;
+    uint8_t tpcNClsdEdx = 0;
+    uint8_t tpcNClsdEdxIROC = 0;
+    uint8_t tpcNClsdEdxOROC1 = 0;
+    uint8_t tpcNClsdEdxOROC2 = 0;
+    uint8_t tpcNClsdEdxOROC3 = 0;
     int8_t tpcNClsFindableMinusFound = 0;
     int8_t tpcNClsFindableMinusCrossedRows = 0;
     uint8_t tpcNClsShared = 0;

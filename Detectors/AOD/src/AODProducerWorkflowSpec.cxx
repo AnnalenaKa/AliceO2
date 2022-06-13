@@ -233,11 +233,15 @@ void AODProducerWorkflowDPL::addToTracksExtraTable(TracksExtraCursorType& tracks
   tracksExtraCursor(0,
                     truncateFloatFraction(extraInfoHolder.tpcInnerParam, mTrack1Pt),
                     truncateFloatFraction(extraInfoHolder.tpcTgl, mTrackTPCTgl),
-                    truncateFloatFraction(extraInfoHolder.fTPCSigned1Pt, mTrackTPCSgnPt),
+                    truncateFloatFraction(extraInfoHolder.tpcSigned1Pt, mTrackTPCSgnPt),
                     extraInfoHolder.flags,
                     extraInfoHolder.itsClusterMap,
                     extraInfoHolder.tpcNClsFindable,
-                    extraInfoHolder.TPCNClsdEdx,
+                    extraInfoHolder.tpcNClsdEdx,
+                    extraInfoHolder.tpcNClsdEdxIROC,
+                    extraInfoHolder.tpcNClsdEdxOROC1,
+                    extraInfoHolder.tpcNClsdEdxOROC2,
+                    extraInfoHolder.tpcNClsdEdxOROC3,
                     extraInfoHolder.tpcNClsFindableMinusFound,
                     extraInfoHolder.tpcNClsFindableMinusCrossedRows,
                     extraInfoHolder.tpcNClsShared,
@@ -247,6 +251,10 @@ void AODProducerWorkflowDPL::addToTracksExtraTable(TracksExtraCursorType& tracks
                     truncateFloatFraction(extraInfoHolder.trdChi2, mTrackChi2),
                     truncateFloatFraction(extraInfoHolder.tofChi2, mTrackChi2),
                     truncateFloatFraction(extraInfoHolder.tpcSignal, mTrackSignal),
+                    truncateFloatFraction(extraInfoHolder.tpcSignalIROC, mTrackSignal),
+                    truncateFloatFraction(extraInfoHolder.tpcSignalOROC1, mTrackSignal),
+                    truncateFloatFraction(extraInfoHolder.tpcSignalOROC2, mTrackSignal),
+                    truncateFloatFraction(extraInfoHolder.tpcSignalOROC3, mTrackSignal),
                     truncateFloatFraction(extraInfoHolder.trdSignal, mTrackSignal),
                     truncateFloatFraction(extraInfoHolder.length, mTrackSignal),
                     truncateFloatFraction(extraInfoHolder.tofExpMom, mTrack1Pt),
@@ -1825,11 +1833,22 @@ AODProducerWorkflowDPL::TrackExtraInfo AODProducerWorkflowDPL::processBarrelTrac
   if (contributorsGID[GIndex::Source::TPC].isIndexSet()) {
     const auto& tpcOrig = data.getTPCTrack(contributorsGID[GIndex::TPC]);
     extraInfoHolder.tpcInnerParam = tpcOrig.getP();
+    extraInfoHolder.tpcTgl = tpcOrig.getTgl();
+    extraInfoHolder.tpcSigned1Pt = tpcOrig.getQ2Pt();
     extraInfoHolder.tpcChi2NCl = tpcOrig.getNClusters() ? tpcOrig.getChi2() / tpcOrig.getNClusters() : 0;
     extraInfoHolder.tpcSignal = tpcOrig.getdEdx().dEdxTotTPC;
+    extraInfoHolder.tpcSignalIROC = tpcOrig.getdEdx().dEdxTotIROC;
+    extraInfoHolder.tpcSignalOROC1 = tpcOrig.getdEdx().dEdxTotOROC1;
+    extraInfoHolder.tpcSignalOROC2 = tpcOrig.getdEdx().dEdxTotOROC2;
+    extraInfoHolder.tpcSignalOROC3 = tpcOrig.getdEdx().dEdxTotOROC3;
     uint8_t shared, found, crossed; // fixme: need to switch from these placeholders to something more reasonable
     countTPCClusters(tpcOrig, data.getTPCTracksClusterRefs(), data.clusterShMapTPC, data.getTPCClusters(), shared, found, crossed);
     extraInfoHolder.tpcNClsFindable = tpcOrig.getNClusters();
+    extraInfoHolder.tpcNClsdEdx = (tpcOrig.getdEdx().NHitsSubThresholdIROC + tpcOrig.getdEdx().NHitsSubThresholdOROC1 + tpcOrig.getdEdx().NHitsSubThresholdOROC2 + tpcOrig.getdEdx().NHitsSubThresholdOROC3);
+    extraInfoHolder.tpcNClsdEdxIROC = tpcOrig.getdEdx().NHitsSubThresholdIROC;
+    extraInfoHolder.tpcNClsdEdxOROC1 = tpcOrig.getdEdx().NHitsSubThresholdOROC1;
+    extraInfoHolder.tpcNClsdEdxOROC2 = tpcOrig.getdEdx().NHitsSubThresholdOROC2;
+    extraInfoHolder.tpcNClsdEdxOROC3 = tpcOrig.getdEdx().NHitsSubThresholdOROC3;
     extraInfoHolder.tpcNClsFindableMinusFound = tpcOrig.getNClusters() - found;
     extraInfoHolder.tpcNClsFindableMinusCrossedRows = tpcOrig.getNClusters() - crossed;
     extraInfoHolder.tpcNClsShared = shared;

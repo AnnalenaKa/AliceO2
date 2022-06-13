@@ -204,9 +204,16 @@ DECLARE_SOA_EXPRESSION_COLUMN(C1Pt21Pt2, c1Pt21Pt2, float, //!
 
 // TRACKEXTRA TABLE definition
 DECLARE_SOA_COLUMN(TPCInnerParam, tpcInnerParam, float);                                      //! Momentum at inner wall of the TPC
+DECLARE_SOA_COLUMN(TPCTgl, tpcTgl, float); 
+DECLARE_SOA_COLUMN(TPCSigned1Pt, tpcSigned1Pt, float);
 DECLARE_SOA_COLUMN(Flags, flags, uint32_t);                                                   //! Track flags. Run 2: see TrackFlagsRun2Enum | Run 3: see TrackFlags
 DECLARE_SOA_COLUMN(ITSClusterMap, itsClusterMap, uint8_t);                                    //! ITS cluster map, one bit per a layer, starting from the innermost
 DECLARE_SOA_COLUMN(TPCNClsFindable, tpcNClsFindable, uint8_t);                                //! Findable TPC clusters for this track geometry
+DECLARE_SOA_COLUMN(TPCNClsdEdx, tpcNClsdEdx, uint8_t);
+DECLARE_SOA_COLUMN(TPCNClsdEdxIROC, tpcNClsdEdxIROC, uint8_t);
+DECLARE_SOA_COLUMN(TPCNClsdEdxOROC1, tpcNClsdEdxOROC1, uint8_t);
+DECLARE_SOA_COLUMN(TPCNClsdEdxOROC2, tpcNClsdEdxOROC2, uint8_t);
+DECLARE_SOA_COLUMN(TPCNClsdEdxOROC3, tpcNClsdEdxOROC3, uint8_t);
 DECLARE_SOA_COLUMN(TPCNClsFindableMinusFound, tpcNClsFindableMinusFound, int8_t);             //! TPC Clusters: Findable - Found
 DECLARE_SOA_COLUMN(TPCNClsFindableMinusCrossedRows, tpcNClsFindableMinusCrossedRows, int8_t); //! TPC Clusters: Findable - crossed rows
 DECLARE_SOA_COLUMN(TPCNClsShared, tpcNClsShared, uint8_t);                                    //! Number of shared TPC clusters
@@ -216,6 +223,10 @@ DECLARE_SOA_COLUMN(TPCChi2NCl, tpcChi2NCl, float);                              
 DECLARE_SOA_COLUMN(TRDChi2, trdChi2, float);                                                  //! Chi2 for the TRD track segment
 DECLARE_SOA_COLUMN(TOFChi2, tofChi2, float);                                                  //! Chi2 for the TOF track segment
 DECLARE_SOA_COLUMN(TPCSignal, tpcSignal, float);                                              //! dE/dx signal in the TPC
+DECLARE_SOA_COLUMN(TPCSignalIROC, tpcSignalIROC, float);
+DECLARE_SOA_COLUMN(TPCSignalOROC1, tpcSignalOROC1, float);
+DECLARE_SOA_COLUMN(TPCSignalOROC2, tpcSignalOROC2, float);
+DECLARE_SOA_COLUMN(TPCSignalOROC3, tpcSignalOROC3, float);
 DECLARE_SOA_COLUMN(TRDSignal, trdSignal, float);                                              //! dE/dx signal in the TRD
 DECLARE_SOA_COLUMN(Length, length, float);                                                    //! Track length
 DECLARE_SOA_COLUMN(TOFExpMom, tofExpMom, float);                                              //! TOF expected momentum obtained in tracking, used to compute the expected times
@@ -366,11 +377,11 @@ DECLARE_SOA_EXTENDED_TABLE(TracksCovIU, StoredTracksCovIU, "TRACKCOV_IU", //! Tr
                            aod::track::C1Pt21Pt2);
 
 DECLARE_SOA_TABLE_FULL(StoredTracksExtra, "TracksExtra", "AOD", "TRACKEXTRA", //! On disk version of TracksExtra
-                       track::TPCInnerParam, track::Flags, track::ITSClusterMap,
-                       track::TPCNClsFindable, track::TPCNClsFindableMinusFound, track::TPCNClsFindableMinusCrossedRows,
+                       track::TPCInnerParam, track::TPCTgl, track::TPCSigned1Pt, track::Flags, track::ITSClusterMap,
+                       track::TPCNClsFindable, track::TPCNClsdEdx, track::TPCNClsdEdxIROC, track::TPCNClsdEdxOROC1, track::TPCNClsdEdxOROC2, track::TPCNClsdEdxOROC3,  track::TPCNClsFindableMinusFound, track::TPCNClsFindableMinusCrossedRows,
                        track::TPCNClsShared, track::TRDPattern, track::ITSChi2NCl,
                        track::TPCChi2NCl, track::TRDChi2, track::TOFChi2,
-                       track::TPCSignal, track::TRDSignal, track::Length, track::TOFExpMom,
+                       track::TPCSignal, track::TPCSignalIROC, track::TPCSignalOROC1, track::TPCSignalOROC2, track::TPCSignalOROC3, track::TRDSignal, track::Length, track::TOFExpMom,
                        track::PIDForTracking<track::Flags>,
                        track::IsPVContributor<track::Flags>,
                        track::HasITS<track::DetectorMap>, track::HasTPC<track::DetectorMap>,
